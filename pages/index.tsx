@@ -4,14 +4,14 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import { TextField } from '../components/TextField/TextField'
 import { useState } from 'react'
-import { Flex, Grid, GridItem, Heading, Box } from "@chakra-ui/react"
+import { Flex, Grid, GridItem, Heading, Box, Button } from "@chakra-ui/react"
 
 const Home: NextPage = () => {
   const [value, setValue] = useState<string>('')
   const [checker, setChecker] = useState<string|null>('No input')
 
   function CheckInput(input:string): void {
-    setValue(input.toLowerCase())
+    
     if(input.length===0){
       setChecker('No input')
     } else if(input.length>25){
@@ -39,18 +39,29 @@ const Home: NextPage = () => {
   return (
     <Flex height='100vh' alignItems='center' justifyContent='center'>
       <Flex direction='column' background='gray.200' p={12} rounded={6}>
-        <Heading mb={3}>
+        <Heading mb={5}>
           Algorithm Test
         </Heading>
         <TextField 
           label='Input:'
           value={value}
           handleChange={e=>{
-            CheckInput(e.target.value)
+            setValue(e.target.value.toLowerCase())
           }}
         />
-        <b>Output:</b>
-        {checker}
+        <Button 
+          colorScheme='teal'
+          mb={6} 
+          onClick={()=>{
+          CheckInput(value)
+        }}>
+          Execute Function
+        </Button>
+        <Box textAlign='center'>
+          <span>Output:</span>
+          <br/>
+          {checker}
+        </Box>
       </Flex>
     </Flex>
   )
