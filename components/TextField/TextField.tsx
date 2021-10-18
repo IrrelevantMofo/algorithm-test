@@ -12,7 +12,7 @@ export const TextField:React.FC<Props> = ({label, value, handleChange}) => {
 
     return (
         <div>
-            <label><b>{label}</b></label>
+            <label>{label}</label>
             <br/>
             <Input type='text' variant='filled' mb={'3'} value={value} onChange={handleChange}/>
         </div>
